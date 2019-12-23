@@ -191,19 +191,19 @@ WITH BROKER "broker_name"
 
     这个配置用于访问以 HA 模式部署的 HDFS 集群。
     
-    * `dfs.nameservices`：指定 hdfs 服务的名字，自定义，如："dfs.nameservices" = "my_ha"。
-    * `dfs.ha.namenodes.xxx`：自定义 namenode 的名字,多个名字以逗号分隔。其中 xxx 为 `dfs.nameservices` 中自定义的名字，如 "dfs.ha.namenodes.my_ha" = "my_nn"。
-    * `dfs.namenode.rpc-address.xxx.nn`：指定 namenode 的rpc地址信息。其中 nn 表示 `dfs.ha.namenodes.xxx` 中配置的 namenode 的名字，如："dfs.namenode.rpc-address.my_ha.my_nn" = "host:port"。
+    * `dfs.nameservices`：指定 hdfs 服务的名字，自定义，如："dfs.nameservices" = "myha"。
+    * `dfs.ha.namenodes.xxx`：自定义 namenode 的名字,多个名字以逗号分隔。其中 xxx 为 `dfs.nameservices` 中自定义的名字，如 "dfs.ha.namenodes.my_ha" = "mynn"。
+    * `dfs.namenode.rpc-address.xxx.nn`：指定 namenode 的rpc地址信息。其中 nn 表示 `dfs.ha.namenodes.xxx` 中配置的 namenode 的名字，如："dfs.namenode.rpc-address.myha.mynn" = "host:port"。
     * `dfs.client.failover.proxy.provider`：指定 client 连接 namenode 的 provider，默认为：org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider。
 
     示例如下：
     
     ```
     (
-        "dfs.nameservices" = "my_ha",
-        "dfs.ha.namenodes.my_ha" = "my_namenode1, my_namenode2",
-        "dfs.namenode.rpc-address.my_ha.my_namenode1" = "nn1_host:rpc_port",
-        "dfs.namenode.rpc-address.my_ha.my_namenode2" = "nn2_host:rpc_port",
+        "dfs.nameservices" = "myha",
+        "dfs.ha.namenodes.myha" = "mynamenode1, mynamenode2",
+        "dfs.namenode.rpc-address.myha.mynamenode1" = "nn1_host:rpc_port",
+        "dfs.namenode.rpc-address.myha.mynamenode2" = "nn2_host:rpc_port",
         "dfs.client.failover.proxy.provider" = "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider"
     )
     ```
@@ -214,13 +214,15 @@ WITH BROKER "broker_name"
     (
         "username"="user",
         "password"="passwd",
-        "dfs.nameservices" = "my_ha",
-        "dfs.ha.namenodes.my_ha" = "my_namenode1, my_namenode2",
-        "dfs.namenode.rpc-address.my_ha.my_namenode1" = "nn1_host:rpc_port",
-        "dfs.namenode.rpc-address.my_ha.my_namenode2" = "nn2_host:rpc_port",
+        "dfs.nameservices" = "myha",
+        "dfs.ha.namenodes.myha" = "mynamenode1, mynamenode2",
+        "dfs.namenode.rpc-address.myha.mynamenode1" = "nn1_host:rpc_port",
+        "dfs.namenode.rpc-address.myha.mynamenode2" = "nn2_host:rpc_port",
         "dfs.client.failover.proxy.provider" = "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider"
     )
     ```
+    自定义名称部分，如myha，mynamenode1等，不要用下划线。
+    
     
 #### 百度对象存储 BOS
 
